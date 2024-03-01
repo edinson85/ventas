@@ -1,14 +1,15 @@
 <?php
+  // DB Params
+  define('DB_HOST', $_ENV['DB_HOST']);
+  define('DB_USER', $_ENV['DB_USER']);
+  define('DB_PASS', $_ENV['DB_PASS']);
+  define('DB_NAME', $_ENV['DB_NAME']);
 
-$val = dirname(dirname(__FILE__));
-define('APP', dirname(dirname(__FILE__)));
-
-if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
-        $url = "https://";   
-else  
-        $url = "http://";   
-// Append the host(domain name, ip) to the URL.   
-$url.= $_SERVER['HTTP_HOST'];   
-    
-  
-define('URL', $url);
+  // App Root
+  define('APPROOT', dirname(dirname(__FILE__)));
+  // URL Root
+  define('URLROOT', $_ENV['URLROOT']);
+  // Site Name
+  define('SITENAME', 'MegaRed');
+  // App Version
+  define('APPVERSION', '1.0.0');
