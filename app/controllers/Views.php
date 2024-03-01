@@ -1,11 +1,14 @@
 <?php
 
-class Views
+class  Views extends Control
 {
 
   public function inicio()
   {
-    echo "<h1>Pagina de Inicio</h1>";
+    $datos = [
+      "title" => "Inicio"
+    ];
+    $this->load_view('inicio', $datos);
   }
 
   public function update($id)
