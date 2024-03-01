@@ -1,0 +1,1 @@
+2024/01/20 03:05:48 [emerg] 3418#3418: cannot load certificate "/nginx-selfsigned.crt": BIO_new_file() failed (SSL: error:80000002:system library::No such file or directory:calling fopen(/nginx-selfsigned.crt, r) error:10000080:BIO routines::no such file)

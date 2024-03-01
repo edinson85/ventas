@@ -1,0 +1,82 @@
+version: '3.1'
+services:
+  database_mvc:
+    container_name: database_mvc
+    image: mysql:5.7
+    command:
+      - --default-authentication-plugin=mysql_native_password
+      - --innodb-buffer-pool-size=1G
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_general_ci
+      - --max_allowed_packet=32505856
+    environment:
+      MYSQL_DATABASE: $BD_NAME
+      MYSQL_USER: $BD_PASSWORD_USER
+      MYSQL_PASSWORD: $BD_PASSWORD_ROOT
+      MYSQL_ROOT_PASSWORD: $BD_PASSWORD_ROOT
+    volumes:
+      - ./dump:/docker-entrypoint-initdb.d
+      - database_mvc:/var/lib/mysql
+    ports:
+      - "$PORT_MYSQL:3306"
+    restart: always
+    networks:
+      - default
+    deploy:
+        resources:
+            limits:
+              memory: $RAM_MAX_DB
+            reservations:
+              memory: $RAM_RES_DB
+
+  project_mvc:
+    container_name: mvc_amazon_linux
+    depends_on:
+      - database_mvc
+    restart: always
+    links:
+          - database_mvc:database_mvc
+    volumes:
+      - $PATH_PROJECT:/usr/share/nginx/html
+    image: amazon_linux
+    build:
+      context: ./
+    privileged: true
+    ports:
+      - "$PORT_HTTP_HOST:80"      
+      - "$PORT_DEBUG:$PORT_DEBUG"
+    networks:
+      - default
+    dns:
+      - "8.8.8.8"
+      - "1.1.1.1"
+    command: /usr/sbin/init && systemctl restart php-fpm.service && systemctl restart nginx.service && cd /usr/share/nginx/html
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    hostname: project_mvc
+    domainname: project_mvc
+    deploy:
+        resources:
+            limits:
+              memory: $RAM_MAX
+            reservations:
+              memory: $RAM_RES
+
+  phpmyadmin_project_mvc:
+    container_name: phpmyadmin_project_mvc
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - database_mvc
+    links:
+      - database_mvc:database_mvc
+    ports:
+      - $PORT_PHP_MY_ADMIN:80
+    restart: always
+    environment:
+      PMA_HOST: database_mvc
+      MYSQL_PASSWORD: $BD_PASSWORD_USER
+      MYSQL_ROOT_PASSWORD: $BD_PASSWORD_ROOT
+      UPLOAD_LIMIT: 100000000
+
+volumes:
+  database_mvc:
