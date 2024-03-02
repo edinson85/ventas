@@ -13,10 +13,10 @@ class Usuario
         $this->nombre = $nombre;
         $this->setCorreo($correo);
         $this->password = '';        
-        $this->estado = false;        
+        $this->estado = true;        
     }
 
-    private function setId(string $id): void
+    public function setId(string $id): void
     {
         $this->id = $id;
     }

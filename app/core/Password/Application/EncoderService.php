@@ -15,16 +15,14 @@ class EncoderService
     public function encrypt(string $password): string {
         return Hash::make($password);
     }
-
-    public function isValidPassword(string $password): void {
-        $expresion = env('REGULAR_PHRASE');
-        if ($expresion != '' && preg_match_all($expresion, $password) == 0) {
-            throw PasswordException::invalidFormat();
+    */
+    public function isValidPassword(string $password, string $hash_password): bool {        
+        $result = false;
+        if(password_verify($password, $hash_password)){
+            $result = true;
         }
-        if (env('MINIMUM_LENGTH') > \strlen($password)) {
-            throw PasswordException::invalidLength();
-        }
-    }*/
+        return $result;
+    }
 
     public function encode(string $value): string {
         return password_hash($value, PASSWORD_DEFAULT);

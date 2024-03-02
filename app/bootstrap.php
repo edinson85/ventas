@@ -6,7 +6,8 @@
   require_once 'validations/UsuarioValidations.php';
   require_once '../vendor/autoload.php';
   require_once 'core/Usuario/Application/RegistrarUsuarioService.php';
-  require_once 'core/Usuario/Application/LoginUsuarioService.php';  
+  require_once 'core/Usuario/Application/LoginUsuarioService.php';
+  require_once 'core/Usuario/Application/EditarUsuarioService.php';    
   require_once 'core/Usuario/Infraestructure/Repositories/UserRepository.php';
   require_once 'core/Password/Application/EncoderService.php';
   require_once 'core/Usuario/Domain/Models/Usuario.php';

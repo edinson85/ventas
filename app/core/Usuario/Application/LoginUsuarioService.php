@@ -21,10 +21,14 @@ class LoginUsuarioService
             } else {
                 $loggedInUser = $this->userRespository->login($correo, $password);
                 if($loggedInUser){
-                    $result['result'] = true;                    
-                    $_SESSION['user_id'] = $loggedInUser->id;
-                    $_SESSION['name'] = $loggedInUser->name;
-                    $_SESSION['email'] = $loggedInUser->email;
+                    if (!$loggedInUser->estado) {
+                        $result['email_err'] = 'User not active';
+                    } else {
+                        $result['result'] = true;                    
+                        $_SESSION['user_id'] = $loggedInUser->id;
+                        $_SESSION['name'] = $loggedInUser->name;
+                        $_SESSION['email'] = $loggedInUser->email;
+                    }
                 } else {
                     $result['password_err'] = 'Password incorrect';
                 }                
