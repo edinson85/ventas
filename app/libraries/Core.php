@@ -19,12 +19,19 @@
         // Unset 0 Index
         unset($url[0]);
       }
-
+      try {
+        require_once '../app/controllers/'. $this->currentController . '.php';
+      } catch (\Throwable $rg) {
+        $r = $rg;
+      }
       // Require the controller
-      require_once '../app/controllers/'. $this->currentController . '.php';
 
       // Instantiate controller class
-      $this->currentController = new $this->currentController;
+      try {
+        $this->currentController = new $this->currentController;
+      } catch (\Throwable $rg) {
+        $r = $rg;
+      }
 
       // Check for second part of url
       if(isset($url[1])){

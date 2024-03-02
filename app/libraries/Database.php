@@ -7,16 +7,21 @@
    * Return rows and results
    */
   class Database {
-    private $host = DB_HOST;
-    private $user = DB_USER;
-    private $pass = DB_PASS;
-    private $dbname = DB_NAME;
+    private $host;
+    private $user;
+    private $pass;
+    private $dbname;
 
     private $dbh;
     private $stmt;
     private $error;
 
     public function __construct(){
+      
+      $this->host = $_ENV['DB_HOST'];
+      $this->user = $_ENV['DB_USER'];
+      $this->pass = $_ENV['DB_PASS'];
+      $this->dbname = $_ENV['DB_NAME'];
       // Set DSN
       $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
       $options = array(
