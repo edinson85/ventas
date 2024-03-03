@@ -28,6 +28,12 @@
   require_once 'core/Producto/Application/EditarProductoService.php';    
   require_once 'core/Producto/Application/EliminarProductoService.php';    
 
+  require_once 'core/Venta/Domain/Models/Venta.php';
+  require_once 'core/Venta/Domain/Models/VentaProducto.php';
+  require_once 'core/Venta/Application/ListarVentasService.php';
+  require_once 'core/Venta/Infraestructure/Repositories/VentaRepository.php';
+  require_once 'core/Venta/Infraestructure/Repositories/VentaProductoRepository.php';
+
   // Autoload Core Libraries
   spl_autoload_register(function($className){
     require_once 'libraries/' . $className . '.php';
