@@ -9,14 +9,14 @@ class VentaRepository {
     }
 
     //register new venta
-    public function register(Venta $data): bool {
+    public function register(Venta $data) {
         $this->db->query('INSERT INTO venta (cliente_id, valor, estado) VALUES (:cliente_id, :valor, :estado)');        
         $this->db->bind(':cliente_id', $data->getCliente()->getId());        
         $this->db->bind(':valor', $data->getValor());
         $this->db->bind(':estado', $data->getEstado());
 
-        if($this->db->execute()){
-            return true;
+        if($this->db->execute()){            
+            return $this->db->lastId();
         }else{
             return false;
         }
@@ -56,8 +56,9 @@ class VentaRepository {
     }         
 
     //find venta by id
-    public function findVentaById($id) {
-        $this->db->query('SELECT * FROM venta WHERE id = :id');
+    public function findVentaById($id, $activo = false) {
+        $concat = (!$activo) ? '' : ' and estado = 1 ';        
+        $this->db->query('SELECT * FROM venta WHERE id = :id '.$concat);
         $this->db->bind(':id', $id);
 
         $row = $this->db->single();

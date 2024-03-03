@@ -1,7 +1,7 @@
 <?php
 
 
-class ListarClientesService 
+class EncontrarClienteService 
 {
     protected $clienteRespository;    
 
@@ -12,9 +12,9 @@ class ListarClientesService
         $this->clienteRespository = new ClienteRepository();        
     }
 
-    public function listar(bool $activos = false): array {        
+    public function encontrar(int $idCliente, bool $activos = false) {        
         try {            
-            $result = $this->clienteRespository->list($activos);                
+            $result = $this->clienteRespository->findCustomerById($idCliente,$activos);                
         } catch (\Exception $e) {            
             // TO DO ADD LOG
         }

@@ -1,7 +1,7 @@
 <?php
 
 
-class ListarProductosService 
+class EncontrarProductoService 
 {
     protected $productoRepository;    
 
@@ -12,9 +12,9 @@ class ListarProductosService
         $this->productoRepository = new ProductoRepository();        
     }
 
-    public function listar(bool $activos = false): array {        
+    public function encontrar(int $idProducto, bool $activo = false) {        
         try {            
-            $result = $this->productoRepository->list($activos);                
+            $result = $this->productoRepository->findProductById($idProducto, $activo);                
         } catch (\Exception $e) {            
             // TO DO ADD LOG
         }

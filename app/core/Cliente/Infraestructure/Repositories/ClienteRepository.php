@@ -70,8 +70,9 @@ class ClienteRepository {
     }
 
     //find customer by id
-    public function findCustomerById($id) {
-        $this->db->query('SELECT * FROM cliente WHERE id = :id');
+    public function findCustomerById($id, $activo = false) {
+        $concat = (!$activo) ? '' : ' and estado = 1 ';        
+        $this->db->query('SELECT * FROM cliente WHERE id = :id '.$concat);
         $this->db->bind(':id', $id);
 
         $row = $this->db->single();
@@ -87,8 +88,9 @@ class ClienteRepository {
         }
     }    
 
-    public function list() {
-        $this->db->query('SELECT * FROM cliente');        
+    public function list(bool $activos) {
+        $concat = (!$activos) ? '' : ' where estado = 1 ';        
+        $this->db->query('SELECT * FROM cliente '.$concat);        
         $rows = $this->db->resultSet();
         $customers = [];        
         if($this->db->rowCount() > 0){

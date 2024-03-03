@@ -1,21 +1,66 @@
 $(document).ready(function(){
-	$('[data-toggle="tooltip"]').tooltip();
-	var actions = $("table td:last-child").html();
+	$('[data-toggle="tooltip"]').tooltip();	
+	let productos = [];
+	let valores = [];
+	let total = 0;
 	let tipo = '';
 	// Append table with add row form on add new button click
     $(".add-new").click(function(){
-		$(this).attr("disabled", "disabled");
+		//$(this).attr("disabled", "disabled");
 		var index = $("table tbody tr:last-child").index();
 		tipo = 'new';
-        var row = '<tr id="new">' +
-            '<td><input type="text" class="form-control" name="producto" id="producto"></td>' +
-            '<td><input type="text" class="form-control" name="valor" id="valor"></td>' +            
-			'<td>' + actions + '</td>' +
-        '</tr>';
-    	$("table").append(row);		
-		$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-        $('[data-toggle="tooltip"]').tooltip();
+		let idProduct = $('#productos').val();
+		if (idProduct != 0) {
+			$('#productos').find('option[value="' + idProduct + '"]').hide(); 			
+			productos.push(idProduct);
+			result = procesarValorSeleccionado($('#productos').find('option:selected').text());			
+			total = total + parseInt(result[1]);			
+			valores[idProduct] = parseInt(result[1]);
+			var row = '<tr id='+idProduct+'>' +
+				'<td name="nombre">'+result[0]+'</td>' +
+				'<td name="valor"> $ '+result[1]+'</td>' +				
+				'<td><a class="delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>' +
+			'</tr>';
+			$("table").append(row);		
+			$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+			$('[data-toggle="tooltip"]').tooltip();
+			$('#total').html('<b>$ '+total+'</b>');
+			$('#productos').val(0);
+		} else {
+			alert("Debe seleccionar una opción valida para productos");
+		}
     });
+
+	$(".create").click(function(){
+		let idCliente = $('#clientes').val();
+		if (idCliente != 0) {
+			let datos = {
+				productos: productos,
+				idCliente: idCliente,
+				total: total
+			};	
+			var j = jQuery.noConflict();
+			$.ajax({
+				url: '/ventas/registrar',
+				type: 'POST',
+				data: datos,
+				success: function(response) {
+					// Manejar la respuesta exitosa aquí
+					console.log('Petición POST enviada correctamente');
+					console.log(response);				
+					window.history.back();
+
+				},
+				error: function(xhr, status, error) {
+				// Manejar errores aquí
+				console.error('Error en la petición POST');
+				console.error(error);
+				}
+			});			
+		} else {
+			alert("Debe seleccionar un cliente valido");
+		}		
+	});
 	// Add row on add button click
 	$(document).on("click", ".add", function() {
 		var empty = false;
@@ -69,7 +114,11 @@ $(document).ready(function(){
         $(this).parents("tr").remove();		
 		$(".add-new").removeAttr("disabled");
 		let id  = $(this).parents("tr").attr('id');
-		eliminarCliente(id);
+		$('#productos').find('option[value="' + id + '"]').show(); 			
+		eliminarProducto(id);
+		let valor = valores [id];
+		total = total - valor;
+		$('#total').html('<b>$ '+total+'</b>');		
     });
 
 	function agregarEditarCliente(allInputs, id) {	
@@ -130,25 +179,19 @@ $(document).ready(function(){
 		}
 		return data;
 	}
-	function eliminarCliente(id) {							
-		/*
-		var j = jQuery.noConflict();
-		$.ajax({
-			url: '/customers/eliminar',
-			type: 'POST',
-			data: 'id='+id,
-			success: function(response) {
-				// Manejar la respuesta exitosa aquí
-				console.log('Petición POST enviada correctamente');
-				console.log(response);
-				location.reload(); 
-			},
-			error: function(xhr, status, error) {
-				// Manejar errores aquí
-				console.error('Error en la petición POST');
-				console.error(error);
-			}
-			});		
-			*/	  
-}
+
+	function procesarValorSeleccionado(valor){
+		let partes = valor.split('-');
+		partes[0] = partes[0].trim();
+		partes[1] = partes[1].trim();
+		partes[1] = partes[1].replace('$','');
+		return partes;
+	}
+
+	function eliminarProducto(valor){
+		let index = productos.indexOf(valor); 
+		if (index !== -1) { 
+			productos.splice(index, 1); 
+		}		
+	}
 });

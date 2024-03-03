@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-sm-8"><h2><b>Ventas</b></h2></div>
                     <div class="col-sm-4">                        
-                        <a class="btn btn-info add-new" href="<?php echo URLROOT ;?>/ventas/crear"><i class="fa fa-pencil"></i> Nueva</a>
+                        <a class="btn btn-info add-new" href="<?php echo URLROOT ;?>/ventas/nueva"><i class="fa fa-pencil"></i> Nueva</a>
                     </div>
                 </div>
             </div>

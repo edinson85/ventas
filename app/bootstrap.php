@@ -16,6 +16,7 @@
   require_once 'core/Cliente/Domain/Models/Cliente.php';
   require_once 'core/Cliente/Infraestructure/Repositories/ClienteRepository.php';
   require_once 'core/Cliente/Application/ListarClientesService.php';
+  require_once 'core/Cliente/Application/EncontrarClienteService.php';  
   require_once 'core/Cliente/Application/RegistrarClienteService.php';  
   require_once 'core/Cliente/Application/EditarClienteService.php';    
   require_once 'core/Cliente/Application/EliminarClienteService.php';    
@@ -27,12 +28,16 @@
   require_once 'core/Producto/Application/RegistrarProductosService.php';  
   require_once 'core/Producto/Application/EditarProductoService.php';    
   require_once 'core/Producto/Application/EliminarProductoService.php';    
+  require_once 'core/Producto/Application/EncontrarProductoService.php';      
 
   require_once 'core/Venta/Domain/Models/Venta.php';
   require_once 'core/Venta/Domain/Models/VentaProducto.php';
   require_once 'core/Venta/Application/ListarVentasService.php';
+  require_once 'core/Venta/Application/RegistrarVentaService.php';
+  require_once 'core/Venta/Application/RegistrarVentaProductoService.php';  
+  require_once 'core/Venta/Application/EncontrarVentaService.php';  
   require_once 'core/Venta/Infraestructure/Repositories/VentaRepository.php';
-  require_once 'core/Venta/Infraestructure/Repositories/VentaProductoRepository.php';
+  require_once 'core/Venta/Infraestructure/Repositories/VentaProductoRepository.php';  
 
   // Autoload Core Libraries
   spl_autoload_register(function($className){

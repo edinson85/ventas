@@ -68,8 +68,9 @@ class ProductoRepository {
     }
 
     //find product by id
-    public function findProductById($id) {
-        $this->db->query('SELECT * FROM producto WHERE id = :id');
+    public function findProductById($id, $activo = false) {
+        $concat = (!$activo) ? '' : ' and estado = 1 ';        
+        $this->db->query('SELECT * FROM producto WHERE id = :id '.$concat);
         $this->db->bind(':id', $id);
 
         $row = $this->db->single();
@@ -84,8 +85,9 @@ class ProductoRepository {
         }
     }    
     //list all products
-    public function list() {
-        $this->db->query('SELECT * FROM producto');        
+    public function list(bool $activos) {
+        $concat = (!$activos) ? '' : ' where estado = 1 ';        
+        $this->db->query('SELECT * FROM producto '.$concat);        
         $rows = $this->db->resultSet();
         $products = [];        
         if($this->db->rowCount() > 0){
