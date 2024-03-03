@@ -12,6 +12,9 @@
               <a class="nav-link" href="#">Welcome <?php echo $_SESSION['name'] ;?></a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="<?php echo URLROOT; ?>/products/index">Products</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="<?php echo URLROOT; ?>/customers/index">Customers</a>
             </li>
             <li class="nav-item">

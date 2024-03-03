@@ -21,11 +21,24 @@ CREATE TABLE `cliente` (
   `estado` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+CREATE TABLE `producto` (
+  `id` int(11) NOT NULL,  
+  `nombre` int(11) NOT NULL,
+  `valor` int(11) NOT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`id`);
+
 
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
@@ -33,5 +46,9 @@ ALTER TABLE `user`
 
 ALTER TABLE `cliente`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+ALTER TABLE `producto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
 COMMIT;
 

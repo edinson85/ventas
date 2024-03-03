@@ -21,7 +21,7 @@ class ClienteValidations {
             $error = false;
         }    
         //valide estado
-        if(empty($data['estado'])){
+        if(!isset($data['estado'])){
             $data['err'] = 'Please enter estado';            
             $error = false;
         }    
@@ -30,7 +30,7 @@ class ClienteValidations {
         }
         return $data;        
     }
-    public static function validateDataRegister(array $dataPost):array {        
+    public static function validateDataRegister(array $dataPost):array {                
         $data = [
             'cedula' => trim($dataPost['cedula']),
             'nombres' => trim($dataPost['nombres']),
@@ -43,7 +43,7 @@ class ClienteValidations {
     }
 
     public static function validateDataEditar(array $dataPost):array {
-        $error = true;  
+        $error = true;          
         $data = [
             'cedula' => trim($dataPost['cedula']),
             'nombres' => trim($dataPost['nombres']),

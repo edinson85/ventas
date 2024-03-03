@@ -83,6 +83,7 @@ class Users extends Controller{
     }
 
     public function edit(){
+        $this->isLoggedIn();
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             // process form
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING); 

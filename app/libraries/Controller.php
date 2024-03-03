@@ -23,4 +23,10 @@
         die('View does not exist');
       }
     }
+
+    public function isLoggedIn() {
+      if(!isLoggedIn()){
+        redirect('users/login');
+      }
+    }
   }

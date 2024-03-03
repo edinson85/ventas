@@ -13,7 +13,6 @@
   require_once 'core/Password/Application/EncoderService.php';
   require_once 'core/Usuario/Domain/Models/Usuario.php';
   
-  
   require_once 'core/Cliente/Domain/Models/Cliente.php';
   require_once 'core/Cliente/Infraestructure/Repositories/ClienteRepository.php';
   require_once 'core/Cliente/Application/ListarClientesService.php';
@@ -21,6 +20,9 @@
   require_once 'core/Cliente/Application/EditarClienteService.php';    
   require_once 'core/Cliente/Application/EliminarClienteService.php';    
 
+  require_once 'core/Producto/Domain/Models/Producto.php';
+  require_once 'core/Producto/Infraestructure/Repositories/ProductoRepository.php';
+  require_once 'core/Producto/Application/ListarProductosService.php';
   
   // Autoload Core Libraries
   spl_autoload_register(function($className){

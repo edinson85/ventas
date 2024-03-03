@@ -1,29 +1,28 @@
 <?php
-  class Customers extends Controller {
-    protected $listarClientesService;
-    protected $registrarClienteService;
-    protected $editarClienteService;
-    protected $eliminarClienteService;
+  class Products extends Controller {
+    protected $listarProductosService;
+    //protected $registrarClienteService;
+    //protected $editarClienteService;
+    //protected $eliminarClienteService;
     
 
     public function __construct(){
-      $this->listarClientesService = new ListarClientesService();
-      $this->registrarClienteService = new RegistrarClienteService();      
-      $this->editarClienteService = new EditarClienteService();      
-      $this->eliminarClienteService = new EliminarClienteService();
+      $this->listarProductosService = new ListarProductosService();
+      //$this->registrarClienteService = new RegistrarClienteService();      
+      //$this->editarClienteService = new EditarClienteService();      
+      //$this->eliminarClienteService = new EliminarClienteService();
     }
     
     public function index(){
       $this->isLoggedIn();
-      $customers = $this->listarClientesService->listar();
+      $products = $this->listarProductosService->listar();
       $data = [];
-      foreach ($customers as $customer) {
+      foreach ($products as $product) {
         $data [] = [
-          'id' => $customer->getId(),
-          'cedula' => $customer->getCedula(),
-          'nombres' => $customer->getNombres(),
-          'apellidos' => $customer->getApellidos(),
-          'estado' => $customer->getEstado() 
+          'id' => $product->getId(),          
+          'nombre' => $product->getNombre(),
+          'valor' => $product->getValor(),
+          'estado' => $product->getEstado() 
         ];
       }         
       if ($_SESSION['flash_message'] != '') {
@@ -31,9 +30,9 @@
         $_SESSION['flash_message'] = '';
         $_SESSION['color_flash'] = '';
       }
-      $this->view('customers/index', $data);
+      $this->view('products/index', $data);
     }
-
+    /*
     public function registrar(){            
       $this->isLoggedIn();
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -96,5 +95,5 @@
         }          
       }    
     }   
-          
+        */  
   }
