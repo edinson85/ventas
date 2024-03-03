@@ -22,7 +22,7 @@ class Users extends Controller{
             if ($data['result']) {
                 $result = $this->registrarUsuarioService->registrar($data['name'], $data['email'], $data['password']);      
                 if($result['result']){
-                    flash('register_success', 'you are registerd you can login now');
+                    flash('register_success', 'Ya estas registrado, ahora puedes loguearte');
                     redirect('users/login');
                 } else {
                     $data['email_err'] = $result['email_err'];
@@ -91,7 +91,7 @@ class Users extends Controller{
             if ($data['result_validation']) {
                 $result = $this->editarUsuarioService->editar($_SESSION['user_id'], $data['name'], $data['email'], $data['current_password'], $data['password'],$data['estado']);                      
                 if($result['result']){                    
-                    flash('edit_success', 'your account has been successfully edited');
+                    flash('edit_success', 'Tu cuenta ha sido editada satisfactoriemante');
                     $data['current_password'] = '';
                     $data['password'] = '';
                     $data['confirm_password'] = '';

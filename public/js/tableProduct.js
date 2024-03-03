@@ -95,10 +95,10 @@ $(document).ready(function(){
 					datos = addData(datos, clave, valor);
 					totalCampos ++;
 				}
-				if ( totalCampos == 4) {
-					let route = '/productos/registrar';
+				if ( totalCampos == 3) {
+					let route = '/products/registrar';
 					if (id != 'new') {
-						route = '/productos/editar';
+						route = '/products/editar';
 					}
 					datos = addData(datos, 'id', id);
 					var j = jQuery.noConflict();
@@ -133,7 +133,7 @@ $(document).ready(function(){
 	function eliminarProducto(id) {							
 		var j = jQuery.noConflict();
 		$.ajax({
-			url: '/productos/eliminar',
+			url: '/products/eliminar',
 			type: 'POST',
 			data: 'id='+id,
 			success: function(response) {

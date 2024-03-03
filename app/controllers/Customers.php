@@ -42,7 +42,7 @@
           if ($data['result']) {
             $result = $this->registrarClienteService->registrar($data['cedula'], $data['nombres'], $data['apellidos'], $data['estado']);      
             if($result['result']){                
-                $_SESSION['flash_message'] = 'Client successfully added';
+                $_SESSION['flash_message'] = 'Cliente agregado satisfactoriamente';
                 $_SESSION['color_flash'] = 'alert alert-success';                
             } else {                              
                 $_SESSION['flash_message'] = $result['err'];     
@@ -63,7 +63,7 @@
         if ($data['result']) {
           $result = $this->editarClienteService->editar($data['id'], $data['cedula'], $data['nombres'], $data['apellidos'], $data['estado']);      
           if($result['result']){                
-              $_SESSION['flash_message'] = 'Client successfully edit';
+              $_SESSION['flash_message'] = 'Cliente editado satisfactoriamente';
               $_SESSION['color_flash'] = 'alert alert-success';                
           } else {                              
               $_SESSION['flash_message'] = $result['err'];     
@@ -84,7 +84,7 @@
         if ($data['result']) {
           $result = $this->eliminarClienteService->eliminar($data['id']);      
           if($result['result']){                
-              $_SESSION['flash_message'] = 'Client successfully delete';
+              $_SESSION['flash_message'] = 'Cliente eliminado satisfactoriamente';
               $_SESSION['color_flash'] = 'alert alert-success';                
           } else {                              
               $_SESSION['flash_message'] = $result['err'];     

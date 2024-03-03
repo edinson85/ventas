@@ -22,6 +22,7 @@
       try {
         require_once '../app/controllers/'. $this->currentController . '.php';
       } catch (\Throwable $rg) {
+        // TO DO ADD LOG
         $r = $rg;
       }
       // Require the controller
@@ -30,6 +31,7 @@
       try {
         $this->currentController = new $this->currentController;
       } catch (\Throwable $rg) {
+        // TO DO ADD LOG
         $r = $rg;
       }
 

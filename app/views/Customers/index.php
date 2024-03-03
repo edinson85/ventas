@@ -14,9 +14,9 @@
         <?php flash('result'); ?>
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Customers <b>Details</b></h2></div>
+                    <div class="col-sm-8"><h2><b>Clientes</b></h2></div>
                     <div class="col-sm-4">
-                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Nuevo</button>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                         <th>Nombres</th>
                         <th>Apellidos</th>
                         <th>Estado</th>
-                        <th>Actions</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,9 +38,9 @@
                         <td id='apellidos' ><?php echo $customer['apellidos'] ;?></td>
                         <td id="estado" ><input  type="checkbox" value="" name="estado" id="estado" <?php echo ($customer['estado']) ? 'checked disabled' : 'disabled' ;?>></td>
                         <td>
-                            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <a class="add" title="Guardar" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                            <a class="edit" title="Editar" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a class="delete" title="Eliminar" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
                     <?php endforeach ;?>                        

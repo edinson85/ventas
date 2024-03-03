@@ -8,7 +8,7 @@ class ProductoRepository {
 
     //register new product
     public function register(Producto $data): bool {
-        $this->db->query('INSERT INTO producto (nombres, valor, estado) VALUES (:cedula, :nombres, :apellidos, :estado)');        
+        $this->db->query('INSERT INTO producto (nombre, valor, estado) VALUES (:nombre, :valor, :estado)');        
         $this->db->bind(':nombre', $data->getNombre());
         $this->db->bind(':valor', $data->getValor());
         $this->db->bind(':estado', $data->getEstado());
@@ -53,7 +53,7 @@ class ProductoRepository {
         return $result;
     }     
     //find product by nombre
-    public function findCustomerByNombre($nombre):bool {
+    public function findProductByNombre($nombre):bool {
         $this->db->query('SELECT * FROM producto WHERE nombre = :nombre');
         $this->db->bind(':nombre', $nombre);
 

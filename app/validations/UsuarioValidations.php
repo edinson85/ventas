@@ -20,32 +20,32 @@ class UsuarioValidations {
 
         //valide name
         if(empty($data['name'])){
-            $data['name_err'] = 'Please enter name';            
+            $data['name_err'] = 'Por favor ingrese un nombre';            
             $error = false;
         }    
 
         //validate password 
         if(empty($data['password'])){
-            $data['password_err'] = 'Please enter your password';
+            $data['password_err'] = 'Por favor ingrese su password';
             $error = false;
         }elseif(strlen($data['password']) < 6){
-            $data['password_err'] = 'Password must be atleast six characters';
+            $data['password_err'] = 'El password debe de tener minimo 6 caracteres';
             $error = false;
         }
 
         //validate confirm password
         if(empty($data['confirm_password'])){
-            $data['confirm_password_err'] = 'Please confirm password';
+            $data['confirm_password_err'] = 'Por favor confirme su password';
             $error = false;
         }else{
             if($data['password'] != $data['confirm_password'])
             {
-                $data['confirm_password_err'] = 'Password does not match';
+                $data['confirm_password_err'] = 'Los password no coinciden';
                 $error = false;
             }
         }
         if(empty($data['email'])){
-            $data['email_err'] = 'Please enter email';
+            $data['email_err'] = 'Por favor ingrese un correo';
             $error = false;
         }
         if(!$error) {
@@ -65,14 +65,14 @@ class UsuarioValidations {
             'result' => true
         ];        
         if(empty($data['email'])){
-            $data['email_err'] = 'Please enter email';
+            $data['email_err'] = 'Por favor ingrese un correo';
             $error = false;
         }
         if(empty($data['password'])){
-            $data['password_err'] = 'Please enter your password';
+            $data['password_err'] = 'Por favor ingrese su password';
             $error = false;
         }elseif(strlen($data['password']) < 6){
-            $data['password_err'] = 'Password must be atleast six characters';
+            $data['password_err'] = 'El password debe de tener minimo 6 caracteres';
             $error = false;
         }
         if(!$error) {
@@ -101,41 +101,41 @@ class UsuarioValidations {
 
         //valide name
         if(empty($data['name'])){
-            $data['name_err'] = 'Please enter name';            
+            $data['name_err'] = 'Por favor ingrese un nombre';            
             $error = false;
         }    
 
         //validate current password 
         if(empty($data['current_password'])){
-            $data['current_password_err'] = 'Please enter your current password';
+            $data['current_password_err'] = 'Por favor ingrese su password actual';
             $error = false;
         }elseif(strlen($data['current_password']) < 6){
-            $data['current_password_err'] = 'Current password must be atleast six characters';
+            $data['current_password_err'] = 'El password actual debe de tener minimo 6 caracteres';
             $error = false;
         }
 
         //validate password 
         if(empty($data['password'])){
-            $data['password_err'] = 'Please enter your new password';
+            $data['password_err'] = 'Por favor ingrese su nuevo password';
             $error = false;
         }elseif(strlen($data['password']) < 6){
-            $data['password_err'] = 'New password must be atleast six characters';
+            $data['password_err'] = 'El nuevo password debe de tener minimo 6 caracteres';
             $error = false;
         }
 
         //validate confirm password
         if(empty($data['confirm_password'])){
-            $data['confirm_password_err'] = 'Please confirm password';
+            $data['confirm_password_err'] = 'Por favor confirme el password';
             $error = false;
         }else{
             if($data['password'] !== $data['confirm_password'])
             {
-                $data['confirm_password_err'] = 'Password does not match';
+                $data['confirm_password_err'] = 'El password no coincide';
                 $error = false;
             }
         }
         if(empty($data['email'])){
-            $data['email_err'] = 'Please enter email';
+            $data['email_err'] = 'Por favor ingrese un correo';
             $error = false;
         }
         if(!$error) {
