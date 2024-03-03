@@ -18,7 +18,8 @@
   require_once 'core/Cliente/Infraestructure/Repositories/ClienteRepository.php';
   require_once 'core/Cliente/Application/ListarClientesService.php';
   require_once 'core/Cliente/Application/RegistrarClienteService.php';  
-
+  require_once 'core/Cliente/Application/EditarClienteService.php';    
+  require_once 'core/Cliente/Application/EliminarClienteService.php';    
 
   
   // Autoload Core Libraries

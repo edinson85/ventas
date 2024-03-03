@@ -39,7 +39,21 @@ class ClienteRepository {
             //TO DO ADD TO LOG
         }
         return $result;
-    }    
+    }  
+    
+    //delete customer
+    public function eliminar($id): bool {        
+        try {        
+            $result = false;
+            $this->db->query("DELETE from cliente  Where id = '$id' ");        
+            if($this->db->execute()){
+                $result = true;
+            }
+        } catch (\Throwable $er) {
+            //TO DO ADD TO LOG
+        }
+        return $result;
+    }     
     //find customer by cedula
     public function findCustomerByCedula($cedula):bool {
         $this->db->query('SELECT * FROM cliente WHERE cedula = :cedula');

@@ -2,10 +2,15 @@
   class Customers extends Controller {
     protected $listarClientesService;
     protected $registrarClienteService;
+    protected $editarClienteService;
+    protected $eliminarClienteService;
+    
 
     public function __construct(){
       $this->listarClientesService = new ListarClientesService();
       $this->registrarClienteService = new RegistrarClienteService();      
+      $this->editarClienteService = new EditarClienteService();      
+      $this->eliminarClienteService = new EliminarClienteService();
     }
     
     public function index(){            
@@ -45,21 +50,46 @@
             $_SESSION['flash_message'] = $data['err'];          
             $_SESSION['color_flash'] = 'alert alert-danger';   
           }          
-      }
-      //redirect('customers/index');
+      }      
     }
 
     public function editar(){            
-      $_POST =  $this->getDataPost();                 
-      redirect('customers/index');
+      if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $data = ClienteValidations::validateDataEditar($data);    
+        if ($data['result']) {
+          $result = $this->editarClienteService->editar($data['id'], $data['cedula'], $data['nombres'], $data['apellidos'], $data['estado']);      
+          if($result['result']){                
+              $_SESSION['flash_message'] = 'Client successfully edit';
+              $_SESSION['color_flash'] = 'alert alert-success';                
+          } else {                              
+              $_SESSION['flash_message'] = $result['err'];     
+              $_SESSION['color_flash'] = 'alert alert-danger'; 
+          }
+        } else {            
+          $_SESSION['flash_message'] = $data['err'];          
+          $_SESSION['color_flash'] = 'alert alert-danger';   
+        }          
+      }
     }
     
     public function eliminar(){            
-      $_POST =  $this->getDataPost();                 
-      redirect('customers/index');
-    }   
-    
-    private function getDataPost() {
-      return filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-    }
+      if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $data = ClienteValidations::validateDataElimianr($data);    
+        if ($data['result']) {
+          $result = $this->eliminarClienteService->eliminar($data['id']);      
+          if($result['result']){                
+              $_SESSION['flash_message'] = 'Client successfully delete';
+              $_SESSION['color_flash'] = 'alert alert-success';                
+          } else {                              
+              $_SESSION['flash_message'] = $result['err'];     
+              $_SESSION['color_flash'] = 'alert alert-danger'; 
+          }
+        } else {            
+          $_SESSION['flash_message'] = $data['err'];          
+          $_SESSION['color_flash'] = 'alert alert-danger';   
+        }          
+      }    
+    }         
   }
