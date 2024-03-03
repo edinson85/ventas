@@ -8,12 +8,12 @@ class Cliente
     private string $apellidos;    
     private bool $estado;    
 
-    public function __construct(string $cedula, string $nombres, string $apellidos)
+    public function __construct(string $cedula, string $nombres, string $apellidos, bool $estado)
     {        
         $this->cedula = $cedula;
         $this->nombres = $nombres;
         $this->apellidos = $apellidos;        
-        $this->estado = true;        
+        $this->estado = $estado;        
     }
 
     public function setId(string $id): void

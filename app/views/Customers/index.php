@@ -11,6 +11,7 @@
 <div class="container-lg">
     <div class="table-responsive">
         <div class="table-wrapper">
+        <?php flash('result'); ?>
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-8"><h2>Customers <b>Details</b></h2></div>
@@ -31,51 +32,18 @@
                 </thead>
                 <tbody>
                     <?php foreach ($data as $customer) : ?>
-                        <tr>
-                        <td><?php echo $customer['cedula'] ;?></td>
-                        <td><?php echo $customer['nombres'] ;?></td>
-                        <td><?php echo $customer['apellidos'] ;?></td>
-                        <td><?php echo $customer['estado'] ;?></td>
+                        <tr id=<?php echo $customer['id'] ;?>>
+                        <td id='cedula' ><?php echo $customer['cedula'] ;?></td>
+                        <td id='nombres' ><?php echo $customer['nombres'] ;?></td>
+                        <td id='apellidos' ><?php echo $customer['apellidos'] ;?></td>
+                        <td id="estado" ><input  type="checkbox" value="" name="estado" id="estado" <?php echo ($customer['estado']) ? 'checked disabled' : 'disabled' ;?>></td>
                         <td>
                             <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                             <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
-                    <?php endforeach ;?>    
-                    <tr>
-                        <td>John Doe</td>
-                        <td>Administration</td>
-                        <td>(171) 555-2222</td>
-                        <td>Active</td>
-                        <td>
-                            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Peter Parker</td>
-                        <td>Customer Service</td>
-                        <td>(313) 555-5735</td>
-                        <td>Active</td>
-                        <td>
-                            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Fran Wilson</td>
-                        <td>Human Resources</td>
-                        <td>(503) 555-9931</td>
-                        <td>Active</td>
-                        <td>
-                            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>      
+                    <?php endforeach ;?>                        
                 </tbody>
             </table>
         </div>

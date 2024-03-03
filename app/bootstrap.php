@@ -4,6 +4,7 @@
   require_once 'helpers/url_helpers.php';
   require_once 'helpers/session_helper.php';
   require_once 'validations/UsuarioValidations.php';
+  require_once 'validations/ClienteValidations.php';
   require_once '../vendor/autoload.php';
   require_once 'core/Usuario/Application/RegistrarUsuarioService.php';
   require_once 'core/Usuario/Application/LoginUsuarioService.php';
@@ -16,8 +17,7 @@
   require_once 'core/Cliente/Domain/Models/Cliente.php';
   require_once 'core/Cliente/Infraestructure/Repositories/ClienteRepository.php';
   require_once 'core/Cliente/Application/ListarClientesService.php';
-
-
+  require_once 'core/Cliente/Application/RegistrarClienteService.php';  
 
 
   

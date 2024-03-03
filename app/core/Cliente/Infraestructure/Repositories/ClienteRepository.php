@@ -42,7 +42,7 @@ class ClienteRepository {
     }    
     //find customer by cedula
     public function findCustomerByCedula($cedula):bool {
-        $this->db->query('SELECT * FROM cedula WHERE cedula = :cedula');
+        $this->db->query('SELECT * FROM cliente WHERE cedula = :cedula');
         $this->db->bind(':cedula', $cedula);
 
         $row = $this->db->single();
@@ -64,7 +64,7 @@ class ClienteRepository {
 
         //check the row 
         if($this->db->rowCount() > 0){
-            $customer = new Cliente($row->cedula, $row->nombres, $row->apellidos);            
+            $customer = new Cliente($row->cedula, $row->nombres, $row->apellidos, $row->estado);            
             $customer->setEstado($row->estado);
             $customer->setId($row->id);
             return $customer;
@@ -79,7 +79,7 @@ class ClienteRepository {
         $customers = [];        
         if($this->db->rowCount() > 0){
             foreach ($rows as $row) {
-                $customer = new Cliente($row->cedula, $row->nombres, $row->apellidos);            
+                $customer = new Cliente($row->cedula, $row->nombres, $row->apellidos, $row->estado);            
                 $customer->setEstado($row->estado);
                 $customer->setId($row->id);
                 $customers[] = $customer;                
