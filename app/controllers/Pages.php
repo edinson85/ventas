@@ -6,7 +6,7 @@
     
     public function index(){
       if(isLoggedIn()){
-        redirect('posts');
+        redirect('ventas');
       }
       $data = [
         'title' => 'Prueba técnica para Mega Red',

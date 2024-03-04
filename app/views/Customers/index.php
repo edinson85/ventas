@@ -44,6 +44,13 @@
                         </td>
                     </tr>
                     <?php endforeach ;?>                        
+                    <tr>
+                    <td style="display: none;">
+                            <a class="add" title="Guardar" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                            <a class="edit" title="Editar" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a class="delete" title="Eliminar" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

@@ -6,7 +6,7 @@
     protected $registrarVentaService;
     protected $eliminarVentaService;
     //protected $editarProductoService;
-    //protected $eliminarProductoService;    
+    
 
     public function __construct(){      
       $this->listarVentasService = new ListarVentasService();
@@ -15,7 +15,7 @@
       $this->registrarVentaService = new RegistrarVentaService();  
       $this->eliminarVentaService = new EliminarVentaService();
       //$this->editarProductoService = new EditarProductoService();      
-      //$this->eliminarProductoService = new EliminarProductoService();
+    
     }  
     
     public function index(){
@@ -61,6 +61,33 @@
         ];
       }         
       $this->view('ventas/nueva',$data);
+    }
+    
+    public function editar($id){
+      $this->isLoggedIn(); 
+      $r = 1;   
+      /*$customers = $this->listarClientesService->listar(true);      
+      $data ['clientes'] = [];      
+      foreach ($customers as $customer) {
+        $data ['clientes'][] = [
+          'id' => $customer->getId(),
+          'cedula' => $customer->getCedula(), 
+          'nombres' => $customer->getNombres(),
+          'apellidos' => $customer->getApellidos(),
+          'estado' => $customer->getEstado() 
+        ];
+      }
+      $data ['productos'] = [];      
+      $products = $this->listarProductosService->listar(true);
+      foreach ($products as $product) {
+        $data ['productos'][] = [
+          'id' => $product->getId(),          
+          'nombre' => $product->getNombre(),
+          'valor' => $product->getValor(),
+          'estado' => $product->getEstado() 
+        ];
+      }         
+      $this->view('ventas/nueva',$data);*/
     }    
     
     public function registrar(){            

@@ -21,7 +21,7 @@ class EliminarClienteService
                 $result['result'] = $this->clienteRespository->eliminar($id);
             } 
             if(!$result['result']) {
-                $result['err'] = 'It was not possible to delete the customer';            
+                $result['err'] = 'No fue posible eliminar el cliente';            
             }                       
         } catch (\Throwable $e) {            
             // TO DO ADD LOG

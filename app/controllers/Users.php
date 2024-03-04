@@ -55,7 +55,7 @@ class Users extends Controller{
             if ($data['result']) {
                 $resultLoggedInUser = $this->loginUsuarioService->login($data['email'], $data['password']);
                 if($resultLoggedInUser['result']){                    
-                    redirect('posts/index');
+                    redirect('ventas/index');
                 }else{
                     if (isset($resultLoggedInUser['email_err'])) {
                         $data['email_err'] = $resultLoggedInUser['email_err'];

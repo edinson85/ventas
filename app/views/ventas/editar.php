@@ -18,21 +18,31 @@
                 </div>                    
                 <div class="row">
                     <div class="col-sm-8"><h2><b>Crear Venta</b></h2></div>
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Agregar Producto</button>                        
-                    </div>
+                    
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4">Seleccione un cliente</div>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Seleccione ...</option>
-                    <option value="1">Edinson</option>
-                    <option value="2">Isabella</option>
-                    <option value="3">Tatiana</option>
+                <select id="clientes" class="form-select" aria-label="Default select example">
+                    <option value="0" selected>Seleccione ...</option>
+                    <?php foreach ($data['clientes'] as $customer) : ?>
+                        <option value="<?php echo $customer['id'] ;?>"><?php echo $customer['nombres'] ;?> <?php echo $customer['nombres'] ;?></option>                        
+                    <?php endforeach ;?>                        
                 </select>
             </div>
-            <table class="table table-bordered">
+            <div class="row mt-4">
+                <div class="col-sm-4">Seleccione un producto</div>
+                <select id="productos" class="form-select" aria-label="Default select example">
+                    <option value="0" selected>Seleccione ...</option>
+                    <?php foreach ($data['productos'] as $producto) : ?>
+                        <option value="<?php echo $producto['id'] ;?>"><?php echo $producto['nombre'] ;?>- $<?php echo $producto['valor'] ;?></option>                        
+                    <?php endforeach ;?>                        
+                </select>
+                <div class="col-sm-4">
+                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Agregar Producto</button>                        
+                    </div>
+            </div>            
+            <table class="table table-bordered mt-4">
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -40,21 +50,11 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php foreach ($data as $producto) : ?>
-                        <tr id=<?php echo $producto['id'] ;?>>
-                        <td id='producto' ><?php echo $producto['producto'] ;?></td>
-                        <td id='valor' ><?php echo $producto['valor'] ;?></td>                        
-                        <td>
-                            <a class="add" title="Guardar" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>                            
-                            <a class="delete" title="Eliminar" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <?php endforeach ;?>                        
+                <tbody>                                       
                 </tbody>
             </table>
             <div class="row">
-                <div class="col-sm-4">Total: <span id="total"><b>400</b></span></div>
+                <div class="col-sm-4">Total: <span id="total"><b>$ 0</b></span></div>
             </div>
             <div class="row">                    
                 <div class="col-sm-4">

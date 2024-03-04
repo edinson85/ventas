@@ -37,7 +37,8 @@ $(document).ready(function(){
 		}		
     });
 	// Edit row on edit button click
-	$(document).on("click", ".edit", function(){
+	/*$(document).on("click", ".edit", function(){
+		alert("Hola");
 		tipo = 'edit';		
 		let claves = ['cedula','nombres','apellidos', 'estado']
 		let contador = 0;
@@ -59,7 +60,7 @@ $(document).ready(function(){
 		});		
 		$(this).parents("tr").find(".add, .edit").toggle();
 		$(".add-new").attr("disabled", "disabled");
-    });
+    });*/
 	// Delete row on delete button click
 	$(document).on("click", ".delete", function(){		
         $(this).parents("tr").remove();		
