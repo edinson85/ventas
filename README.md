@@ -1,6 +1,29 @@
 # Prueba Técnica para Mega Red
 
-A continuación se describen los pasos para tener el presente proyecto corriendo en tu computador
+A continuación se describen los pasos para tener el presente proyecto corriendo en tu computador.
+Se tendrán dos formas de desplegar la aplicación. El método 1 es más rápido
+
+# 1. Método con Xampp
+
+## Requisitos Instalación
+
+| Nombre   |
+|----------|
+| Xampp    |
+
+## Pasos de instalación
+
+1. Clonar el siguiente proyecto que se encuentra en github ->  __https://github.com/edinson85/ventasMvc.git__ 
+2. Mover el proyecto a la carpeta htdocs de Xampp
+3. Cambiar el proyecto a la rama __xampp__
+4. Ejecutar el comando __composer install__
+5. Se debe de clonar el fichero que se encuentra en la raíz __.env.dist__ y renombrarlo por __.env__
+6. Se debe de modificar los valores del fichero __.env__ para que se pueda realizar la conexión a la base de datos _(host, usuario, password y base de datos)_
+7. Crear una base de datos llamada __megared__ por medio de phpmyadmin
+8. Importar la base de datos que se encuentra en la siguiente ruta relativa __database/megared.sql__
+9. Con lo anterior el proyecto debería de correr sin problemas en la url __http://localhost/ventasMvc__
+
+# 2. Método con Docker
 
 ## Requisitos Instalación
 
@@ -11,7 +34,7 @@ A continuación se describen los pasos para tener el presente proyecto corriendo
 ## Pasos de instalación
 
 ## Clonar proyecto
-1. Clonar el siguiente proyecto que se encuentra en github ->  __https://github.com/edinson85/ventas.git__
+1. Clonar el siguiente proyecto que se encuentra en github ->  __https://github.com/edinson85/ventasMvc.git__ y verificar que estamos ubicados en la rama __main__
 2. Mover el proyecto en una carpeta que no tenga caracteres especiales en su ruta de acceso para evitar inconvenientes al momento de levantar el proyecto con docker
 
 ## Configurar ficheros .env
@@ -38,4 +61,3 @@ A continuación se describen los pasos para tener el presente proyecto corriendo
 13. Importar la base de datos que se encuentra en __database/megared.sql__
 
 14. Con lo anterior el proyecto debería de correr sin problemas en la url __http://localhost:92/__ 
-
