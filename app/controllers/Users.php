@@ -7,17 +7,23 @@ class Users extends Controller{
     protected $loginUsuarioService;    
     protected $editarUsuarioService;
 
+    /**     
+     * @param RegistrarUsuarioService $RegistrarUsuarioService   // Servicio que permite registrar usuarios
+     * @param LoginUsuarioService $LoginUsuarioService           // Servicio que permite hacer login a usuarios
+     * @param EditarUsuarioService $EditarUsuarioService         // Servicio que permite editar usuarios     
+     */    
     public function __construct()
     {        
         $this->registrarUsuarioService = new RegistrarUsuarioService();
         $this->loginUsuarioService = new LoginUsuarioService();
         $this->editarUsuarioService = new EditarUsuarioService();
     }
-
+    // Permite registrar nuevos usuarios
     public function register(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-            // process form
+            // Se obtienen los datos enviados
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);           
+            // Se validan los datos enviados estan completos y con los tipos adecuados
             $data = UsuarioValidations::validateDataRegister($_POST);    
             if ($data['result']) {
                 $result = $this->registrarUsuarioService->registrar($data['name'], $data['email'], $data['password']);      
@@ -47,10 +53,12 @@ class Users extends Controller{
         }
     }
 
+    // Permite que un usuario se loguee en la aplicación
     public function login(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-            // process form
+            // Se obtienen los datos enviados
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING); 
+            // Se validan los datos enviados estan completos y con los tipos adecuados
             $data = UsuarioValidations::validateLogin($_POST);                                                               
             if ($data['result']) {
                 $resultLoggedInUser = $this->loginUsuarioService->login($data['email'], $data['password']);
@@ -81,12 +89,14 @@ class Users extends Controller{
             $this->view('users/login', $data);          
         }
     }
-
+    // Gestiona la edición de un usuario
     public function edit(){
+        // Si no esta logieado se redirige a la vista de login
         $this->isLoggedIn();
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-            // process form
+            // Se obtienen los datos enviados
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING); 
+            // Se obtienen los datos enviados
             $data = UsuarioValidations::validateDataEditar($_POST);                                                               
             if ($data['result_validation']) {
                 $result = $this->editarUsuarioService->editar($_SESSION['user_id'], $data['name'], $data['email'], $data['current_password'], $data['password'],$data['estado']);                      
@@ -126,7 +136,7 @@ class Users extends Controller{
         }
     }    
 
-    //logout and destroy user session
+    //logout destruye la sesión de usuario
     public function logout(){
         unset($_SESSION['user_id']);
         unset($_SESSION['name']);
