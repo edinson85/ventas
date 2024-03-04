@@ -20,7 +20,7 @@
     
     public function index(){
       $this->isLoggedIn();
-      $ventas = $this->listarVentasService->listar();      
+      $ventas = $this->listarVentasService->listar(true);      
       $data = [];
       foreach ($ventas as $venta) {
         $data [] = [

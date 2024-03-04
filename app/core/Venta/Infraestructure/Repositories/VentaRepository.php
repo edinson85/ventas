@@ -23,6 +23,20 @@ class VentaRepository {
     }
 
     //edit venta
+    public function eliminadoLogico($id): bool {        
+        try {        
+            $result = false;
+            $this->db->query("UPDATE venta set estado = '0' Where id = '$id' ");        
+            if($this->db->execute()){
+                $result = true;
+            }
+        } catch (\Throwable $er) {
+            //TO DO ADD TO LOG
+        }
+        return $result;
+    }     
+
+    //edit venta
     public function editar(Venta $data): bool {
         $id = $data->getId();        
         $clienteId = $data->getCliente()->getId();
@@ -74,8 +88,9 @@ class VentaRepository {
         }
     }    
     //list all ventas
-    public function list() {
-        $this->db->query('SELECT * FROM venta');        
+    public function list(bool $activos) {
+        $concat = (!$activos) ? '' : ' where estado = 1 ';        
+        $this->db->query('SELECT * FROM venta '.$concat);        
         $rows = $this->db->resultSet();
         $ventas = [];        
         if($this->db->rowCount() > 0){

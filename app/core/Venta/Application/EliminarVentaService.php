@@ -20,22 +20,12 @@ class EliminarVentaService
         try {
             $result['result'] = false;            
             $venta = $this->ventaRepository->findVentaById($id);            
-            if($venta){                       
-                $ventasProductos = $this->ventaProductoRepository->findVentaProductoByIdVenta($id);
-                $valid = true;
-                foreach ($ventasProductos as $ventaProducto) {
-                    if(!$this->ventaProductoRepository->eliminar($ventaProducto->getId())){
-                        $result['err'] = 'No fue posible eliminar la venta producto';            
-                        $valid = false;
-                        break;
-                    }
-                }
-                if ($valid) {
-                    if(!$this->ventaRepository->eliminar($id)) {
-                        $result['err'] = 'No fue posible eliminar la venta';            
-                        $valid = false;
-                    }
-                }
+            if($venta){                                       
+                $valid = true;                
+                if(!$this->ventaRepository->eliminadoLogico($id)) {
+                    $result['err'] = 'No fue posible eliminar la venta';            
+                    $valid = false;
+                }                
                 $result['result'] = $valid;            
             } 
             if(!$result['result']) {

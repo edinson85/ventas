@@ -12,9 +12,9 @@ class ListarVentasService
         $this->ventasRepository = new VentaRepository();        
     }
 
-    public function listar(): array {        
+    public function listar(bool $activos = false): array {        
         try {            
-            $result = $this->ventasRepository->list();                
+            $result = $this->ventasRepository->list($activos);                
         } catch (\Exception $e) {            
             // TO DO ADD LOG
         }
