@@ -36,11 +36,13 @@
        * Como la vista index es el punto de retorno de diferentes acciones se gestionan en este punto la visualización de las
        * variables flash creadas en el proyecto
        *  
-       * */      
-      if ($_SESSION['flash_message'] != '') {
-        flash('result', $_SESSION['flash_message'],$_SESSION['color_flash']);                 
-        $_SESSION['flash_message'] = '';
-        $_SESSION['color_flash'] = '';
+       * */    
+      if (isset($_SESSION['flash_message'])){  
+        if ($_SESSION['flash_message'] != '') {
+          flash('result', $_SESSION['flash_message'],$_SESSION['color_flash']);                 
+          $_SESSION['flash_message'] = '';
+          $_SESSION['color_flash'] = '';
+        }
       }
       $this->view('products/index', $data);
     }

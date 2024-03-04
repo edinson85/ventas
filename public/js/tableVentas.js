@@ -92,9 +92,9 @@ $(document).ready(function(){
 					totalCampos ++;
 				}
 				if ( totalCampos == 4) {
-					let route = '/customers/registrar';
+					let route = '/ventasMvc/customers/registrar';
 					if (id != 'new') {
-						route = '/customers/editar';
+						route = '/ventasMvc/customers/editar';
 					}
 					datos = addData(datos, 'id', id);
 					var j = jQuery.noConflict();
@@ -130,7 +130,7 @@ $(document).ready(function(){
 	function eliminarVenta(id) {							
 		var j = jQuery.noConflict();
 		$.ajax({
-			url: '/ventas/eliminar',
+			url: '/ventasMvc/ventas/eliminar',
 			type: 'POST',
 			data: 'id='+id,
 			success: function(response) {

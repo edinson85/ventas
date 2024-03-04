@@ -5,15 +5,15 @@
    * otras variables usadas en diferentes vistas
    */
   
-  define('DB_HOST', $_ENV['DB_HOST']);
-  define('DB_USER', $_ENV['DB_USER']);
-  define('DB_PASS', $_ENV['DB_PASS']);
-  define('DB_NAME', $_ENV['DB_NAME']);
+  define('DB_HOST', 'localhost');
+  define('DB_USER', 'root');
+  define('DB_PASS', '');
+  define('DB_NAME', 'megared');
 
   // App Root
   define('APPROOT', dirname(dirname(__FILE__)));
   // URL Root
-  define('URLROOT', $_ENV['URLROOT']);
+  define('URLROOT','http://localhost/ventasMvc');
   // Site Name
   define('SITENAME', 'MegaRed');
   // App Version

@@ -58,6 +58,11 @@
         $url = ltrim($url, '/');
         $url = filter_var($url, FILTER_SANITIZE_URL);
         $url = explode('/', $url);
+        if (isset($url[0])) {
+          if ($url[0] == 'ventasMvc') {
+            array_shift($url);
+          }
+        }
         return $url;
       }
     }

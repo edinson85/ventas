@@ -41,7 +41,7 @@ $(document).ready(function(){
 			};	
 			var j = jQuery.noConflict();
 			$.ajax({
-				url: '/ventas/registrar',
+				url: '/ventasMvc/ventas/registrar',
 				type: 'POST',
 				data: datos,
 				success: function(response) {

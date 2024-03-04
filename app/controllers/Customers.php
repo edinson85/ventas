@@ -39,10 +39,12 @@
        * variables flash creadas en el proyecto
        *    
        * */                 
-      if ($_SESSION['flash_message'] != '') {
-        flash('result', $_SESSION['flash_message'],$_SESSION['color_flash']);                 
-        $_SESSION['flash_message'] = '';
-        $_SESSION['color_flash'] = '';
+      if (isset($_SESSION['flash_message'])){
+        if ($_SESSION['flash_message'] != '') {
+          flash('result', $_SESSION['flash_message'],$_SESSION['color_flash']);                 
+          $_SESSION['flash_message'] = '';
+          $_SESSION['color_flash'] = '';
+        }
       }
       $this->view('customers/index', $data);
     }

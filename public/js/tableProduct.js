@@ -96,9 +96,9 @@ $(document).ready(function(){
 					totalCampos ++;
 				}
 				if ( totalCampos == 3) {
-					let route = '/products/registrar';
+					let route = '/ventasMvc/products/registrar';
 					if (id != 'new') {
-						route = '/products/editar';
+						route = '/ventasMvc/products/editar';
 					}
 					datos = addData(datos, 'id', id);
 					var j = jQuery.noConflict();
@@ -133,7 +133,7 @@ $(document).ready(function(){
 	function eliminarProducto(id) {							
 		var j = jQuery.noConflict();
 		$.ajax({
-			url: '/products/eliminar',
+			url: '/ventasMvc/products/eliminar',
 			type: 'POST',
 			data: 'id='+id,
 			success: function(response) {
