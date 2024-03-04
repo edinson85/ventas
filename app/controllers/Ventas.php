@@ -4,6 +4,7 @@
     protected $listarClientesService;
     protected $listarProductosService;    
     protected $registrarVentaService;
+    protected $eliminarVentaService;
     //protected $editarProductoService;
     //protected $eliminarProductoService;    
 
@@ -11,7 +12,8 @@
       $this->listarVentasService = new ListarVentasService();
       $this->listarClientesService = new ListarClientesService();
       $this->listarProductosService = new ListarProductosService();      
-      $this->registrarVentaService = new RegistrarVentaService();      
+      $this->registrarVentaService = new RegistrarVentaService();  
+      $this->eliminarVentaService = new EliminarVentaService();
       //$this->editarProductoService = new EditarProductoService();      
       //$this->eliminarProductoService = new EliminarProductoService();
     }  
@@ -96,26 +98,20 @@
         }          
       }
     }
-    
+    */
     public function eliminar(){  
       $this->isLoggedIn();          
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $data = ProductoValidations::validateDataElimianr($data);    
-        if ($data['result']) {
-          $result = $this->eliminarProductoService->eliminar($data['id']);      
-          if($result['result']){                
-              $_SESSION['flash_message'] = 'Producto eliminado satisfactoriamente';
-              $_SESSION['color_flash'] = 'alert alert-success';                
-          } else {                              
-              $_SESSION['flash_message'] = $result['err'];     
-              $_SESSION['color_flash'] = 'alert alert-danger'; 
-          }
-        } else {            
-          $_SESSION['flash_message'] = $data['err'];          
-          $_SESSION['color_flash'] = 'alert alert-danger';   
-        }          
+        $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);              
+        $result = $this->eliminarVentaService->eliminar($data['id']);      
+        if($result['result']){                
+            $_SESSION['flash_message'] = 'Venta eliminada satisfactoriamente';
+            $_SESSION['color_flash'] = 'alert alert-success';                
+        } else {                              
+            $_SESSION['flash_message'] = $result['err'];     
+            $_SESSION['color_flash'] = 'alert alert-danger'; 
+        }
+                  
       }    
-    }   
-     */   
+    }        
   }

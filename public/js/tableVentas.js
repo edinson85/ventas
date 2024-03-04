@@ -61,11 +61,11 @@ $(document).ready(function(){
 		$(".add-new").attr("disabled", "disabled");
     });
 	// Delete row on delete button click
-	$(document).on("click", ".delete", function(){
+	$(document).on("click", ".delete", function(){		
         $(this).parents("tr").remove();		
 		$(".add-new").removeAttr("disabled");
-		let id  = $(this).parents("tr").attr('id');
-		eliminarCliente(id);
+		let id  = $(this).parents("tr").attr('id');		
+		eliminarVenta(id);
     });
 
 	function agregarEditarCliente(allInputs, id) {	
@@ -125,10 +125,11 @@ $(document).ready(function(){
 		}
 		return data;
 	}
-	function eliminarCliente(id) {							
+	
+	function eliminarVenta(id) {							
 		var j = jQuery.noConflict();
 		$.ajax({
-			url: '/customers/eliminar',
+			url: '/ventas/eliminar',
 			type: 'POST',
 			data: 'id='+id,
 			success: function(response) {
@@ -143,5 +144,5 @@ $(document).ready(function(){
 				console.error(error);
 			}
 			});			  
-}
+	}
 });

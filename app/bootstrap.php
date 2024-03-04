@@ -36,6 +36,7 @@
   require_once 'core/Venta/Application/RegistrarVentaService.php';
   require_once 'core/Venta/Application/RegistrarVentaProductoService.php';  
   require_once 'core/Venta/Application/EncontrarVentaService.php';  
+  require_once 'core/Venta/Application/EliminarVentaService.php';    
   require_once 'core/Venta/Infraestructure/Repositories/VentaRepository.php';
   require_once 'core/Venta/Infraestructure/Repositories/VentaProductoRepository.php';  
 
